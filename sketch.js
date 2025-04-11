@@ -3,14 +3,14 @@ let bigCube;
 let smallCube;
 let colidingCount = 0;
 
-const mass = 10000;
+const mass = 1;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
   board = new Board();
-  bigCube = new Cube(100, mass * 100, 100, 10);
-  smallCube = new Cube(10, mass, width / 2, 0);
+  bigCube = new Cube(60, mass * 100 * 100 * 100 * 100, 100, 10);
+  smallCube = new Cube(15, mass, width / 2, 0);
 }
 
 function draw() {
@@ -40,6 +40,8 @@ function draw() {
 
   bigCube.move(-Infinity, smallCube.x - bigCube.size);
   smallCube.move(bigCube.x + bigCube.size, width - 50 - smallCube.size);
+
+  writeCollisionCount(colidingCount);
 }
 
 class Cube {
@@ -84,3 +86,7 @@ class Board {
     rect(width - 50, 0, 50, height * 0.8);
   }
 }
+
+const writeCollisionCount = (count) => {
+  document.querySelector("#count").innerHTML = count;
+};
